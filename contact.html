@@ -133,7 +133,7 @@ footer{background:#d4f0d8;padding:60px 6% 30px;}
       </div>
       <div class="contact-item">
         <div class="c-icon">🌐</div>
-        <div><strong>Website</strong><a href="https://agrinovalabs.com" target="_blank">agrinovalabs.com</a></div>
+        <div><strong>Website</strong><a href="https://agrinovalabs.site" target="_blank">agrinovalabs.site</a></div>
       </div>
       <div class="contact-item">
         <div class="c-icon">🕐</div>
@@ -175,8 +175,8 @@ footer{background:#d4f0d8;padding:60px 6% 30px;}
       <div class="form-group"><label>Message *</label><textarea id="message" placeholder="Tell us how we can help. We'll respond within 24 hours..."></textarea></div>
       <button class="form-submit" onclick="handleSubmit()">Send Message →</button>
       <p class="form-note">
-        Powered by <strong><a href="https://zoho.com" target="_blank">Zoho Mail</a></strong> · 
-        <a href="mailto:hello@agrinovaai.com">hello@agrinovaai.com</a><br/>
+        <!-- Powered by <strong><a href="https://zoho.com" target="_blank">Zoho Mail</a></strong> ·  -->
+        <a href="mailto:oselu@agrinovaai.site">hello@agrinovaai.com</a><br/>
         We respond within 24 hours on business days. Your data is kept private and never sold.
       </p>
       <div class="toast" id="toast">✅ Message sent! We'll get back to you within 24 hours. — The AgriNova Labs Team</div>
@@ -253,7 +253,7 @@ function handleSubmit() {
   const phone = document.getElementById('phone').value.trim();
   const subject = `AgriNova Inquiry${interest ? ': ' + interest : ''} — from ${fn} ${ln}`;
   const body = `Hello AgriNova Labs Team,\n\nName: ${fn} ${ln}\nEmail: ${em}\nPhone: ${phone || 'Not provided'}\nInterest: ${interest || 'Not specified'}\n\nMessage:\n${msg}\n\n---\nSent via agrinovaai.com contact form\nPowered by Zoho Mail`;
-  window.location.href = `mailto:hello@agrinovaai.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = `mailto:oselu@agrinovaai.site?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   document.getElementById('toast').classList.add('show');
   setTimeout(() => document.getElementById('toast').classList.remove('show'), 7000);
   ['firstName','lastName','email','phone','message'].forEach(id => document.getElementById(id).value = '');
