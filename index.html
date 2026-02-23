@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AgriNova Labs — AI-Powered Precision Farming</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --green-deep: #2d7a3a; --green-mid: #4caf58; --green-bright: #6dcc78;
+  --green-light: #b8ebb0; --earth: #3a9e4f; --earth-light: #a8e6b0;
+  --cream: #f0faf2; --off-white: #ffffff; --dark: #1a4a22;
+  --text: #1e3d24; --text-muted: #5a8a62;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--text); overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; width: 100%; z-index: 999; display: flex; align-items: center; justify-content: space-between; padding: 18px 6%; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(76,175,80,0.2); }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark { width: 40px; height: 40px; background: linear-gradient(135deg, var(--green-bright), var(--earth-light)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.logo-text { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--dark); }
+.logo-text span { color: var(--green-mid); }
+nav ul { display: flex; gap: 28px; list-style: none; align-items: center; }
+nav ul a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+nav ul a:hover { color: var(--green-deep); }
+nav ul a.active { color: var(--green-deep); font-weight: 600; }
+.nav-cta { background: var(--green-deep) !important; color: #fff !important; padding: 9px 22px; border-radius: 50px; font-weight: 600 !important; }
+.nav-cta:hover { background: var(--dark) !important; color: #fff !important; }
+
+/* HERO */
+.hero { min-height: 100vh; background: #c8f0d0; position: relative; display: flex; align-items: center; overflow: hidden; padding: 120px 6% 80px; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(255,255,255,0.45) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 10% 90%, rgba(100,210,120,0.25) 0%, transparent 60%); }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(76,175,80,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(76,175,80,0.1) 1px, transparent 1px); background-size: 60px 60px; }
+.hero-content { position: relative; z-index: 2; max-width: 650px; }
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.6); border: 1px solid rgba(76,175,80,0.35); color: var(--green-deep); padding: 6px 16px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; }
+.hero-tag::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem,6vw,5rem); font-weight: 900; color: var(--green-deep); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; }
+.hero h1 em { font-style: italic; color: var(--green-mid); }
+.hero p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.75; max-width: 520px; margin-bottom: 40px; }
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary { background: var(--green-deep); color: #fff; padding: 14px 30px; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 0.95rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 24px rgba(45,122,58,0.3); display: inline-block; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(45,122,58,0.45); background: #1a4a22; }
+.btn-outline { border: 2px solid var(--green-deep); color: var(--green-deep); padding: 14px 30px; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 0.95rem; transition: background 0.2s, color 0.2s; background: rgba(255,255,255,0.4); display: inline-block; }
+.btn-outline:hover { background: var(--green-deep); color: #fff; }
+.hero-visual { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); width: min(460px, 42vw); z-index: 2; }
+.hero-image-card { border-radius: 20px; overflow: hidden; border: 1px solid rgba(76,175,80,0.3); box-shadow: 0 40px 80px rgba(45,122,58,0.2); position: relative; }
+.hero-image-card img { width: 100%; display: block; height: 380px; object-fit: cover; }
+.hero-badge { position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255,255,255,0.88); backdrop-filter: blur(10px); border: 1px solid rgba(76,175,80,0.25); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
+.badge-dot { width: 10px; height: 10px; background: var(--green-mid); border-radius: 50%; animation: pulse 2s infinite; flex-shrink: 0; }
+.badge-text { color: var(--green-deep); font-size: 0.82rem; }
+.badge-text strong { color: var(--green-mid); }
+
+/* SECTIONS */
+section { padding: 90px 6%; }
+.section-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-mid); background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.25); padding: 5px 14px; border-radius: 50px; margin-bottom: 16px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); font-weight: 700; color: var(--green-deep); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+.section-sub { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; max-width: 560px; }
+
+/* ABOUT */
+#about { background: var(--cream); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
+.about-img { border-radius: 16px; overflow: hidden; position: relative; }
+.about-img img { width: 100%; height: 420px; object-fit: cover; display: block; }
+.about-img::after { content: ''; position: absolute; inset: 0; border-radius: 16px; border: 2px solid rgba(76,175,80,0.3); pointer-events: none; }
+.about-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; margin-top: 20px; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 30px; }
+.stat-box { background: #fff; border: 1px solid rgba(76,175,80,0.15); border-radius: 14px; padding: 20px; }
+.stat-box .num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--green-mid); }
+.stat-box .lbl { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
+.about-cta { margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* METRICS */
+#metrics { background: var(--off-white); }
+.metrics-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 56px; }
+.metric-card { text-align: center; background: var(--cream); border: 1px solid rgba(76,175,80,0.12); border-radius: 18px; padding: 36px 24px; position: relative; overflow: hidden; }
+.metric-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--green-bright), var(--earth-light)); }
+.metric-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--green-mid); line-height: 1; margin-bottom: 8px; }
+.metric-label { font-size: 0.88rem; color: var(--text-muted); font-weight: 500; }
+
+/* IMPACT */
+#impact { background: #e8f8eb; }
+.impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 56px; }
+.impact-card { background: #fff; border: 1px solid rgba(76,175,80,0.2); border-radius: 18px; padding: 30px; display: flex; gap: 18px; align-items: flex-start; transition: box-shadow 0.2s, transform 0.2s; }
+.impact-card:hover { box-shadow: 0 8px 32px rgba(76,175,80,0.15); transform: translateY(-4px); }
+.impact-icon { width: 52px; height: 52px; flex-shrink: 0; background: rgba(76,175,80,0.12); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.impact-card h3 { color: var(--green-deep); font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+.impact-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; }
+
+/* REVIEWS */
+#reviews { background: #f0faf2; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 56px; }
+.review-card { background: #fff; border: 1px solid rgba(76,175,80,0.15); border-radius: 18px; padding: 28px; transition: box-shadow 0.2s, transform 0.2s; }
+.review-card:hover { box-shadow: 0 12px 36px rgba(76,175,80,0.12); transform: translateY(-4px); }
+.stars { color: #f5a623; font-size: 1rem; margin-bottom: 14px; }
+.review-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+.reviewer { display: flex; align-items: center; gap: 12px; }
+.reviewer-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--green-mid), var(--green-light)); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+.reviewer-name { color: var(--green-deep); font-size: 0.9rem; font-weight: 600; }
+.reviewer-role { color: var(--text-muted); font-size: 0.78rem; }
+
+/* TEAM */
+#team { background: var(--off-white); }
+.team-grid { display: flex; gap: 40px; justify-content: center; margin-top: 56px; flex-wrap: wrap; }
+.team-card { background: #fff; border: 1px solid rgba(76,175,80,0.12); border-radius: 22px; padding: 36px 32px; text-align: center; width: 280px; transition: transform 0.25s, box-shadow 0.25s; }
+.team-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(26,58,31,0.12); }
+.team-avatar { cursor: pointer; width: 200px; height: 200px; border-radius: 50%; margin: 0 auto 20px; border: 3px solid rgba(76,175,80,0.3); background: linear-gradient(135deg, var(--green-mid), var(--earth)); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #fff; }
+.team-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--green-deep); margin-bottom: 4px; }
+.team-role { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green-mid); margin-bottom: 12px; }
+.team-bio { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; }
+.team-phone { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 16px; }
+.team-socials { display: flex; justify-content: center; gap: 10px; }
+.team-socials a { width: 34px; height: 34px; border: 1px solid rgba(76,175,80,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; color: var(--green-mid); text-decoration: none; transition: background 0.2s, color 0.2s; font-weight: 600; }
+.team-socials a:hover { background: var(--green-mid); color: #fff; }
+
+/* QUICK CTA STRIP */
+.cta-strip { background: var(--green-deep); padding: 72px 6%; text-align: center; }
+.cta-strip h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: #fff; margin-bottom: 14px; }
+.cta-strip p { color: rgba(255,255,255,0.65); font-size: 1rem; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-strip-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.cta-strip .btn-white { background: #fff; color: var(--green-deep); padding: 13px 28px; border-radius: 50px; font-weight: 700; text-decoration: none; font-size: 0.93rem; transition: opacity 0.2s; }
+.cta-strip .btn-white:hover { opacity: 0.9; }
+.cta-strip .btn-ghost { border: 2px solid rgba(255,255,255,0.4); color: #fff; padding: 13px 28px; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 0.93rem; transition: border-color 0.2s; }
+.cta-strip .btn-ghost:hover { border-color: #fff; }
+
+/* FOOTER */
+footer { background: #d4f0d8; padding: 60px 6% 30px; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(76,175,80,0.2); }
+.footer-brand p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; margin-top: 14px; max-width: 260px; }
+.footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+.footer-socials a { width: 36px; height: 36px; border: 1px solid rgba(76,175,80,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--green-deep); text-decoration: none; font-size: 0.8rem; font-weight: 600; transition: background 0.2s; }
+.footer-socials a:hover { background: var(--green-mid); color: #fff; border-color: var(--green-mid); }
+.footer-col h4 { color: var(--green-deep); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+.footer-col ul a:hover { color: var(--green-deep); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { color: var(--text-muted); font-size: 0.82rem; }
+.footer-bottom a { color: var(--green-deep); text-decoration: none; font-weight: 600; }
+
+/* RESPONSIVE */
+@media(max-width:1024px) {
+  .hero-visual { display: none; }
+  .about-grid, .impact-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .reviews-grid { grid-template-columns: 1fr 1fr; }
+  .metrics-row { grid-template-columns: 1fr 1fr; }
+  nav ul { display: none; }
+}
+@media(max-width:600px) {
+  .reviews-grid, .metrics-row { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-mark">🌿</div>
+    <span class="logo-text">Agri<span>Nova</span> Labs</span>
+  </a>
+  <ul>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="solution.html">Solution</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">AI × Agriculture</div>
+    <h1>Farming Smarter,<br/>Growing <em>Better</em> with AI</h1>
+    <p>AgriNova Labs fuses cutting-edge artificial intelligence with real-world agriculture — empowering farmers, agribusinesses, and investors with predictive insights, smart monitoring, and sustainable crop management.</p>
+    <div class="hero-ctas">
+      <a href="solution.html" class="btn-primary">Explore Our Solution</a>
+      <a href="contact.html" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-image-card">
+      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80" alt="Smart farm aerial view"/>
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        <div class="badge-text"><strong>Live AI monitoring</strong> — 15,000+ hectares active</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">Who We Are</div>
+  <h2 class="section-title">Agriculture Meets Artificial Intelligence</h2>
+  <div class="about-grid">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80" alt="Farmer with tablet in field"/>
+    </div>
+    <div class="about-text">
+      <p>AgriNova Labs is a Lagos-based AgriTech startup on a mission to revolutionize African agriculture through the intelligent application of AI, machine learning, and IoT sensor networks.</p>
+      <p>We build data-driven platforms that give farmers and agribusinesses real-time visibility into soil health, crop conditions, weather patterns, and market signals — transforming raw field data into actionable decisions.</p>
+      <p>From small-scale farms in rural Nigeria to large agribusiness operations across the continent, AgriNova Labs is redefining what's possible when nature and technology work together.</p>
+      <div class="about-stats">
+        <div class="stat-box"><div class="num">94%</div><div class="lbl">Disease Detection Accuracy</div></div>
+        <div class="stat-box"><div class="num">3.2×</div><div class="lbl">Average Yield Improvement</div></div>
+        <div class="stat-box"><div class="num">40%</div><div class="lbl">Water Usage Reduction</div></div>
+        <div class="stat-box"><div class="num">15K+</div><div class="lbl">Hectares Monitored</div></div>
+      </div>
+      <div class="about-cta">
+        <a href="solution.html" class="btn-primary">See Our Solution</a>
+        <a href="features.html" class="btn-outline">Platform Features</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section id="metrics">
+  <div class="section-tag">Performance Metrics</div>
+  <h2 class="section-title">Results That Speak for Themselves</h2>
+  <p class="section-sub">Real numbers from real farms — our AI platform delivers measurable impact at scale.</p>
+  <div class="metrics-row">
+    <div class="metric-card"><div class="metric-num">94%</div><div class="metric-label">Crop Disease Detection Accuracy</div></div>
+    <div class="metric-card"><div class="metric-num">3.2×</div><div class="metric-label">Average Yield Improvement</div></div>
+    <div class="metric-card"><div class="metric-num">40%</div><div class="metric-label">Reduction in Water Usage</div></div>
+    <div class="metric-card"><div class="metric-num">15K+</div><div class="metric-label">Hectares Monitored Monthly</div></div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact">
+  <div class="section-tag">Real World Impact</div>
+  <h2 class="section-title">Transforming Lives Across the Field</h2>
+  <p class="section-sub">Our AI platform isn't just technology — it's changing lives, livelihoods, and the future of African food security.</p>
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-icon">🌾</div>
+      <div>
+        <h3>Yemi, Cassava Farmer — Ogun State</h3>
+        <p>After deploying AgriNova's disease detection, Yemi caught cassava mosaic disease 3 weeks before visible symptoms spread, saving 80% of his harvest — a ₦2.1M turnaround.</p>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">💧</div>
+      <div>
+        <h3>GreenFields Agribusiness — Kaduna</h3>
+        <p>Integrated our smart irrigation module across 200 hectares of maize. Water costs fell 38%, and yield per hectare increased by 2.7× in two consecutive seasons.</p>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🏛️</div>
+      <div>
+        <h3>NAFDAC Agricultural Division</h3>
+        <p>Partnered with AgriNova to monitor pesticide overuse patterns across 12 states using satellite analytics, improving produce safety standards at scale.</p>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">📈</div>
+      <div>
+        <h3>AgriVest Capital — Investment Portfolio</h3>
+        <p>Used our predictive yield forecasting to de-risk a ₦500M agricultural bond portfolio, reducing crop-related default rates by 61%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-tag">Customer Reviews</div>
+  <h2 class="section-title">What Our Clients Say</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"AgriNova Labs transformed how we assess farm investment risk. The yield forecasting data improved our loan recovery rate by 28% in a single year."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">AO</div>
+        <div><div class="reviewer-name">Adewale Okonkwo</div><div class="reviewer-role">Head of Agriculture Finance, Unity Bank</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Before AgriNova, I was guessing when to spray my tomatoes. Now the app tells me exactly what's wrong. My farm made more money this year than the last three combined."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">FK</div>
+        <div><div class="reviewer-name">Fatima Kyari</div><div class="reviewer-role">Tomato Farmer, Kaduna State</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">"As an AgriTech investor, the quality of verified farm data AgriNova provides is unmatched in the Nigerian market. We deploy capital with confidence we never had before."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">CI</div>
+        <div><div class="reviewer-name">Chidi Ibe</div><div class="reviewer-role">Partner, Sahel Capital AgriFood Fund</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-tag">Our Team</div>
+  <h2 class="section-title">The Minds Behind AgriNova</h2>
+  <p class="section-sub">Experienced operators and technologists united by a single mission — using AI to reshape African agriculture.</p>
+  <div class="team-grid">
+    <div class="team-card">
+      <img src="/images/bolaji.jpg" alt="ceo" class="team-avatar" />
+      <h3>Oselu Fortunatus</h3>
+      <div class="team-role">Chief Executive Officer</div>
+      <p class="team-bio">Visionary entrepreneur with 10+ years in AgriTech and startup scaling. Former consultant to the Federal Ministry of Agriculture.</p>
+      <p class="team-phone">📞 +234 706 234 5678</p>
+      <div class="team-socials">
+        <a href="https://www.linkedin.com/in/oselufortunatus" title="LinkedIn">in</a>
+        <a href="https://www.facebook.com/osfoce.acquilla" title="Facebook">Fb</a>
+        <a href="#" title="Twitter">𝕏</a>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="/images/ogunsanya.jpg" alt="cto" class="team-avatar" />
+      <h3>Bolaji Makinde</h3>
+      <div class="team-role">Chief Technology Officer</div>
+      <p class="team-bio">ML engineer and systems architect with deep expertise in computer vision, satellite remote sensing, and large-scale data pipelines.</p>
+      <p class="team-phone">📞 +234 706 234 5678</p>
+      <div class="team-socials">
+        <a href="#" title="LinkedIn">in</a>
+        <a href="#" title="Facebook">Fb</a>
+        <a href="#" title="Twitter">𝕏</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <h2>Ready to Transform Your Farm?</h2>
+  <p>Join hundreds of farmers, agribusinesses, and investors already using AgriNova Labs.</p>
+  <div class="cta-strip-btns">
+    <a href="contact.html" class="btn-white">Get in Touch</a>
+    <a href="solution.html" class="btn-ghost">Explore Our Solution</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">🌿</div>
+        <span class="logo-text">Agri<span>Nova</span> Labs</span>
+      </a>
+      <p>AI-powered precision agriculture for a food-secure Africa. Building the future of farming, one algorithm at a time.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/agrinovalabs" title="Twitter" target="_blank"></a>𝕏</a>
+        <a href="https://www.linkedin.com/company/112016958" title="LinkedIn" target="_blank"></a>in</a>
+        <a href="https://www.facebook.com/photo.php?fbid=122097677865278900&set=a.122097677895278900&type=3&mibextid=rS40aB7S9Ucbxw6v" title="Facebook" target="_blank">fb</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="solution.html">Solution</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="technology.html">Technology</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+    </div>
+   
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:hello@agrinovalabs.com">hello@agrinovaai.com</a></li>
+        <li><a href="tel:+2348140117682">+234 814 011 7682</a></li>
+        <li><a href="#">No 12 obukpa layout, ibagwa road, Enugu State</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+
+     <div class="footer-col">
+      <h4>Social Media</h4>
+      <ul>
+        <li><a href="https://x.com/agrinovalabs" target="_blank"></a>Twitter</a></li>
+        <li><a href="https://www.linkedin.com/company/112016958" target="_blank"></a>LinkedIn</a></li>
+        <li><a href="https://www.facebook.com/photo.php?fbid=122097677865278900&set=a.122097677895278900&type=3&mibextid=rS40aB7S9Ucbxw6v" target="_blank"></a>Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 AgriNova Labs. All rights reserved. Built with ❤️ in Enugu, Nigeria.</p>
+    <p>Reach out to us <a href="#" target="contact.html">via our contact page.</a></p>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.impact-card, .review-card, .team-card, .metric-card, .stat-box').forEach(el => {
+  el.style.opacity='0'; el.style.transform='translateY(24px)'; el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+  io.observe(el);
+});
+</script>
+</body>
+</html>

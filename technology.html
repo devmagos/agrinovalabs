@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Our Technology — AgriNova Labs</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--green-deep:#2d7a3a;--green-mid:#4caf58;--green-bright:#6dcc78;--green-light:#b8ebb0;--earth:#3a9e4f;--earth-light:#a8e6b0;--cream:#f0faf2;--off-white:#ffffff;--dark:#1a4a22;--text:#1e3d24;--text-muted:#5a8a62;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--text);overflow-x:hidden;}
+nav{position:fixed;top:0;width:100%;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:18px 6%;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(76,175,80,0.2);}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-mark{width:40px;height:40px;background:linear-gradient(135deg,var(--green-bright),var(--earth-light));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.logo-text{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--dark);}
+.logo-text span{color:var(--green-mid);}
+nav ul{display:flex;gap:28px;list-style:none;align-items:center;}
+nav ul a{color:var(--text-muted);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color 0.2s;}
+nav ul a:hover{color:var(--green-deep);}nav ul a.active{color:var(--green-deep);font-weight:600;}
+.nav-cta{background:var(--green-deep)!important;color:#fff!important;padding:9px 22px;border-radius:50px;font-weight:600!important;}
+.nav-cta:hover{background:var(--dark)!important;color:#fff!important;}
+
+.page-hero{padding:140px 6% 80px;background:#c8f0d0;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 80% 50%,rgba(255,255,255,0.4) 0%,transparent 70%);}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(76,175,80,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(76,175,80,0.1) 1px,transparent 1px);background-size:60px 60px;}
+.page-hero-content{position:relative;z-index:2;max-width:700px;}
+.page-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.6);border:1px solid rgba(76,175,80,0.35);color:var(--green-deep);padding:6px 16px;border-radius:50px;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:900;color:var(--green-deep);line-height:1.1;letter-spacing:-0.02em;margin-bottom:20px;}
+.page-hero h1 em{font-style:italic;color:var(--green-mid);}
+.page-hero p{font-size:1.1rem;color:var(--text-muted);line-height:1.75;max-width:560px;}
+section{padding:90px 6%;}
+.section-tag{display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--green-mid);background:rgba(76,175,80,0.1);border:1px solid rgba(76,175,80,0.25);padding:5px 14px;border-radius:50px;margin-bottom:16px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--green-deep);line-height:1.15;letter-spacing:-0.02em;margin-bottom:16px;}
+.section-sub{font-size:1rem;color:var(--text-muted);line-height:1.7;max-width:560px;}
+
+/* TECH CATEGORIES */
+.tech-categories{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:56px;}
+.tech-cat-card{background:#fff;border:1px solid rgba(76,175,80,0.12);border-radius:20px;padding:32px 28px;}
+.tech-cat-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--green-deep);margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+.tech-cat-card p{font-size:0.87rem;color:var(--text-muted);line-height:1.6;margin-bottom:20px;}
+.tech-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.tech-chip{display:flex;align-items:center;gap:6px;background:var(--cream);border:1px solid rgba(76,175,80,0.2);border-radius:50px;padding:6px 14px;font-size:0.82rem;font-weight:500;color:var(--green-deep);}
+.tech-dot{width:7px;height:7px;border-radius:50%;background:var(--green-bright);flex-shrink:0;}
+
+/* ARCHITECTURE DIAGRAM */
+.arch{background:var(--cream);}
+.arch-diagram{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:center;margin-top:56px;}
+.arch-layer{background:#fff;border:1px solid rgba(76,175,80,0.15);border-radius:16px;padding:24px 20px;text-align:center;}
+.arch-layer .arch-icon{font-size:2rem;margin-bottom:12px;}
+.arch-layer h4{font-size:0.95rem;font-weight:600;color:var(--green-deep);margin-bottom:6px;}
+.arch-layer p{font-size:0.8rem;color:var(--text-muted);line-height:1.5;}
+.arch-arrow{font-size:1.5rem;color:var(--green-mid);padding:0 8px;text-align:center;}
+
+/* PRINCIPLES */
+.principles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px;}
+.principle{display:flex;gap:16px;align-items:flex-start;}
+.p-num{min-width:40px;height:40px;background:var(--green-deep);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:0.9rem;font-family:'Playfair Display',serif;}
+.principle h4{font-size:0.97rem;font-weight:600;color:var(--green-deep);margin-bottom:6px;}
+.principle p{font-size:0.87rem;color:var(--text-muted);line-height:1.65;}
+
+.cta-strip{background:var(--green-deep);padding:72px 6%;text-align:center;}
+.cta-strip h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);color:#fff;margin-bottom:14px;}
+.cta-strip p{color:rgba(255,255,255,0.65);font-size:1rem;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;}
+.btn-white{background:#fff;color:var(--green-deep);padding:13px 28px;border-radius:50px;font-weight:700;text-decoration:none;font-size:0.93rem;display:inline-block;}
+
+footer{background:#d4f0d8;padding:60px 6% 30px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(76,175,80,0.2);}
+.footer-brand p{color:var(--text-muted);font-size:0.88rem;line-height:1.7;margin-top:14px;max-width:260px;}
+.footer-socials{display:flex;gap:10px;margin-top:20px;}
+.footer-socials a{width:36px;height:36px;border:1px solid rgba(76,175,80,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--green-deep);text-decoration:none;font-size:0.8rem;font-weight:600;transition:background 0.2s;}
+.footer-socials a:hover{background:var(--green-mid);color:#fff;}
+.footer-col h4{color:var(--green-deep);font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:10px;}
+.footer-col ul a{color:var(--text-muted);text-decoration:none;font-size:0.88rem;transition:color 0.2s;}
+.footer-col ul a:hover{color:var(--green-deep);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{color:var(--text-muted);font-size:0.82rem;}
+.footer-bottom a{color:var(--green-deep);text-decoration:none;font-weight:600;}
+@media(max-width:1024px){.tech-categories{grid-template-columns:1fr 1fr;}.arch-diagram{grid-template-columns:1fr;}.arch-arrow{transform:rotate(90deg);}.principles-grid{grid-template-columns:1fr;}.footer-top{grid-template-columns:1fr 1fr;}nav ul{display:none;}}
+@media(max-width:600px){.tech-categories{grid-template-columns:1fr;}.footer-top{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><div class="logo-mark">🌿</div><span class="logo-text">Agri<span>Nova</span> Labs</span></a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="solution.html">Solution</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="technology.html" class="active">Technology</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-tag">🔧 Our Technology</div>
+    <h1>Built on<br/><em>World-Class Infrastructure</em></h1>
+    <p>We combine industry-leading AI frameworks, cloud infrastructure, and open data sources to deliver enterprise-grade reliability and accuracy — from the smallest farm to the largest agribusiness portfolio.</p>
+  </div>
+</div>
+
+<section>
+  <div class="section-tag">Technology Stack</div>
+  <h2 class="section-title">The Tools Powering AgriNova</h2>
+  <p class="section-sub">Every layer of our stack is chosen for performance, reliability, and scalability in low-resource African environments.</p>
+  <div class="tech-categories">
+    <div class="tech-cat-card">
+      <h3>🧠 AI & Machine Learning</h3>
+      <p>The intelligence core powering our disease detection, yield forecasting, and agronomic recommendation engine.</p>
+      <div class="tech-chips">
+        <span class="tech-chip"><span class="tech-dot"></span>Python</span>
+        <span class="tech-chip"><span class="tech-dot"></span>PyTorch</span>
+        <span class="tech-chip"><span class="tech-dot"></span>TensorFlow</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Scikit-learn</span>
+        <span class="tech-chip"><span class="tech-dot"></span>OpenCV</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Hugging Face</span>
+      </div>
+    </div>
+    <div class="tech-cat-card">
+      <h3>☁️ Cloud & Infrastructure</h3>
+      <p>Scalable, resilient infrastructure designed to handle millions of sensor data points and satellite passes daily.</p>
+      <div class="tech-chips">
+        <span class="tech-chip"><span class="tech-dot"></span>AWS SageMaker</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Docker</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Kubernetes</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Terraform</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Redis</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Grafana</span>
+      </div>
+    </div>
+    <div class="tech-cat-card">
+      <h3>📡 IoT & Sensors</h3>
+      <p>Low-power sensor networks built for African farms — reliable, affordable, and deployable in off-grid environments.</p>
+      <div class="tech-chips">
+        <span class="tech-chip"><span class="tech-dot"></span>LoRaWAN</span>
+        <span class="tech-chip"><span class="tech-dot"></span>MQTT</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Arduino</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Raspberry Pi</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Zigbee</span>
+      </div>
+    </div>
+    <div class="tech-cat-card">
+      <h3>🛰️ Remote Sensing & GIS</h3>
+      <p>Satellite and geospatial data pipelines delivering crop health maps and land analytics at continental scale.</p>
+      <div class="tech-chips">
+        <span class="tech-chip"><span class="tech-dot"></span>Sentinel-2 (ESA)</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Google Earth Engine</span>
+        <span class="tech-chip"><span class="tech-dot"></span>GDAL</span>
+        <span class="tech-chip"><span class="tech-dot"></span>PostGIS</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Mapbox</span>
+      </div>
+    </div>
+    <div class="tech-cat-card">
+      <h3>🗄️ Data & Backend</h3>
+      <p>High-throughput data pipelines and APIs that process, store, and serve real-time farm intelligence to every client.</p>
+      <div class="tech-chips">
+        <span class="tech-chip"><span class="tech-dot"></span>FastAPI</span>
+        <span class="tech-chip"><span class="tech-dot"></span>PostgreSQL</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Apache Kafka</span>
+        <span class="tech-chip"><span class="tech-dot"></span>TimescaleDB</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Elasticsearch</span>
+      </div>
+    </div>
+    <div class="tech-cat-card">
+      <h3>📱 Frontend & Mobile</h3>
+      <p>Cross-platform mobile and web apps built for performance in bandwidth-constrained environments.</p>
+      <div class="tech-chips">
+        <span class="tech-chip"><span class="tech-dot"></span>React Native</span>
+        <span class="tech-chip"><span class="tech-dot"></span>React.js</span>
+        <span class="tech-chip"><span class="tech-dot"></span>TypeScript</span>
+        <span class="tech-chip"><span class="tech-dot"></span>PWA</span>
+        <span class="tech-chip"><span class="tech-dot"></span>Tailwind CSS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="arch">
+  <div class="section-tag">System Architecture</div>
+  <h2 class="section-title">How Data Flows Through AgriNova</h2>
+  <p class="section-sub">Our platform is built as a continuous intelligence pipeline — from raw sensor readings to actionable farm decisions.</p>
+  <div class="arch-diagram">
+    <div class="arch-layer">
+      <div class="arch-icon">📡</div>
+      <h4>Data Collection</h4>
+      <p>IoT sensors, satellite passes, mobile uploads, and weather APIs stream data continuously into our ingestion layer.</p>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-layer">
+      <div class="arch-icon">🧠</div>
+      <h4>AI Processing</h4>
+      <p>ML models run inference on incoming data: disease classification, anomaly detection, yield regression, and weather fusion.</p>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-layer">
+      <div class="arch-icon">📲</div>
+      <h4>Smart Delivery</h4>
+      <p>Results are pushed to farmers via the mobile app, to investors via the web dashboard, and to partners via our API.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-tag">Engineering Principles</div>
+  <h2 class="section-title">How We Build</h2>
+  <p class="section-sub">Every technical decision at AgriNova is guided by a set of non-negotiable engineering principles.</p>
+  <div class="principles-grid">
+    <div class="principle"><div class="p-num">01</div><div><h4>Africa-First Performance</h4><p>Every feature is optimised for low-bandwidth, low-power, and low-cost hardware. We never build for Silicon Valley and adapt for Africa — we build for Africa first.</p></div></div>
+    <div class="principle"><div class="p-num">02</div><div><h4>Explainable AI</h4><p>Our models are required to explain their recommendations. Farmers and investors must understand why the AI is saying what it's saying — not just receive a number.</p></div></div>
+    <div class="principle"><div class="p-num">03</div><div><h4>Data Sovereignty</h4><p>Farm data belongs to the farmer. We never sell, aggregate, or monetise individual farm data without explicit consent. Data residency stays within Nigeria where required.</p></div></div>
+    <div class="principle"><div class="p-num">04</div><div><h4>Continuous Learning</h4><p>Our models are retrained with every new growing season, incorporating local crop varieties, regional climate patterns, and evolving pest strains specific to West Africa.</p></div></div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <h2>Interested in Our API?</h2>
+  <p>AgriNova's RESTful API is available for enterprise integrations. Talk to our team to get access.</p>
+  <a href="contact.html" class="btn-white">Get API Access</a>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><div class="logo-mark">🌿</div><span class="logo-text">Agri<span>Nova</span> Labs</span></a>
+      <p>AI-powered precision agriculture for a food-secure Africa.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/agrinovalabs" title="Twitter" target="_blank">𝕏</a>
+        <a href="https://www.linkedin.com/company/112016958" title="LinkedIn" target="_blank">in</a>
+        <a href="https://www.facebook.com/photo.php?fbid=122097677865278900&set=a.122097677895278900&type=3&mibextid=rS40aB7S9Ucbxw6v" title="Facebook" target="_blank">fb</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="features.html">Features</a></li><li><a href="solution.html">Solution</a></li><li><a href="contact.html">Contact</a></li><li><a href="technology.html">Technology</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:hello@agrinovaai.com">hello@agrinovaai.com</a></li><li><a href="tel:+2348140117682">+234 814 011 7682</a></li><li><a>No 12 obukpa layout, ibagwa road, Enugu State</a></li><li><a>Privacy Policy</a></li></ul></div>
+    <div class="footer-col">
+      <h4>Social Media</h4>
+      <ul>
+        <li><a href="https://x.com/agrinovalabs" target="_blank"></a>Twitter</a></li>
+        <li><a href="https://www.linkedin.com/company/112016958" target="_blank"></a>LinkedIn</a></li>
+        <li><a href="https://www.facebook.com/photo.php?fbid=122097677865278900&set=a.122097677895278900&type=3&mibextid=rS40aB7S9Ucbxw6v" target="_blank"></a>Facebook</a></li>
+      </ul>
+  </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 AgriNova Labs. All rights reserved.</p><p>Reach out to us <a href="#" target="contact.html">via our contact page.</a></p></div>
+</footer>
+<script>
+const io=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.style.opacity='1';el.target.style.transform='translateY(0)';}});},{threshold:0.1});
+document.querySelectorAll('.tech-cat-card,.principle,.arch-layer').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity 0.5s ease,transform 0.5s ease';io.observe(el);});
+</script>
+</body>
+</html>

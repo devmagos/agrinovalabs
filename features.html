@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Platform Features — AgriNova Labs</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--green-deep:#2d7a3a;--green-mid:#4caf58;--green-bright:#6dcc78;--green-light:#b8ebb0;--earth:#3a9e4f;--earth-light:#a8e6b0;--cream:#f0faf2;--off-white:#ffffff;--dark:#1a4a22;--text:#1e3d24;--text-muted:#5a8a62;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--text);overflow-x:hidden;}
+nav{position:fixed;top:0;width:100%;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:18px 6%;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(76,175,80,0.2);}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-mark{width:40px;height:40px;background:linear-gradient(135deg,var(--green-bright),var(--earth-light));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.logo-text{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--dark);}
+.logo-text span{color:var(--green-mid);}
+nav ul{display:flex;gap:28px;list-style:none;align-items:center;}
+nav ul a{color:var(--text-muted);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color 0.2s;}
+nav ul a:hover{color:var(--green-deep);}nav ul a.active{color:var(--green-deep);font-weight:600;}
+.nav-cta{background:var(--green-deep)!important;color:#fff!important;padding:9px 22px;border-radius:50px;font-weight:600!important;}
+.nav-cta:hover{background:var(--dark)!important;color:#fff!important;}
+
+.page-hero{padding:140px 6% 80px;background:#c8f0d0;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 80% 50%,rgba(255,255,255,0.4) 0%,transparent 70%);}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(76,175,80,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(76,175,80,0.1) 1px,transparent 1px);background-size:60px 60px;}
+.page-hero-content{position:relative;z-index:2;max-width:700px;}
+.page-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.6);border:1px solid rgba(76,175,80,0.35);color:var(--green-deep);padding:6px 16px;border-radius:50px;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:900;color:var(--green-deep);line-height:1.1;letter-spacing:-0.02em;margin-bottom:20px;}
+.page-hero h1 em{font-style:italic;color:var(--green-mid);}
+.page-hero p{font-size:1.1rem;color:var(--text-muted);line-height:1.75;max-width:560px;}
+section{padding:90px 6%;}
+.section-tag{display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--green-mid);background:rgba(76,175,80,0.1);border:1px solid rgba(76,175,80,0.25);padding:5px 14px;border-radius:50px;margin-bottom:16px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--green-deep);line-height:1.15;letter-spacing:-0.02em;margin-bottom:16px;}
+.section-sub{font-size:1rem;color:var(--text-muted);line-height:1.7;max-width:560px;margin-bottom:56px;}
+
+/* FEATURES GRID */
+.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.feature-row{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid rgba(76,175,80,0.1);border-radius:16px;padding:28px;transition:box-shadow 0.2s,transform 0.2s;}
+.feature-row:hover{box-shadow:0 8px 32px rgba(26,58,31,0.08);transform:translateY(-3px);}
+.feat-icon{width:50px;height:50px;flex-shrink:0;background:linear-gradient(135deg,rgba(76,175,80,0.15),rgba(168,230,176,0.2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+.feature-row h3{font-size:1rem;font-weight:600;color:var(--green-deep);margin-bottom:6px;}
+.feature-row p{font-size:0.87rem;color:var(--text-muted);line-height:1.65;}
+
+/* AUDIENCE TABS */
+.audience{background:var(--cream);}
+.tabs{display:flex;gap:12px;margin-bottom:40px;flex-wrap:wrap;}
+.tab-btn{padding:10px 22px;border-radius:50px;border:1px solid rgba(76,175,80,0.25);background:#fff;color:var(--text-muted);font-size:0.88rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.tab-btn.active,.tab-btn:hover{background:var(--green-deep);color:#fff;border-color:var(--green-deep);}
+.tab-content{display:none;}
+.tab-content.active{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.audience-card{background:#fff;border:1px solid rgba(76,175,80,0.12);border-radius:14px;padding:22px;display:flex;gap:14px;align-items:flex-start;}
+.audience-card .ic{font-size:1.5rem;flex-shrink:0;}
+.audience-card h4{font-size:0.95rem;font-weight:600;color:var(--green-deep);margin-bottom:5px;}
+.audience-card p{font-size:0.84rem;color:var(--text-muted);line-height:1.6;}
+
+.cta-strip{background:var(--green-deep);padding:72px 6%;text-align:center;}
+.cta-strip h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);color:#fff;margin-bottom:14px;}
+.cta-strip p{color:rgba(255,255,255,0.65);font-size:1rem;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;}
+.btn-white{background:#fff;color:var(--green-deep);padding:13px 28px;border-radius:50px;font-weight:700;text-decoration:none;font-size:0.93rem;display:inline-block;}
+
+footer{background:#d4f0d8;padding:60px 6% 30px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(76,175,80,0.2);}
+.footer-brand p{color:var(--text-muted);font-size:0.88rem;line-height:1.7;margin-top:14px;max-width:260px;}
+.footer-socials{display:flex;gap:10px;margin-top:20px;}
+.footer-socials a{width:36px;height:36px;border:1px solid rgba(76,175,80,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--green-deep);text-decoration:none;font-size:0.8rem;font-weight:600;transition:background 0.2s;}
+.footer-socials a:hover{background:var(--green-mid);color:#fff;}
+.footer-col h4{color:var(--green-deep);font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:10px;}
+.footer-col ul a{color:var(--text-muted);text-decoration:none;font-size:0.88rem;transition:color 0.2s;}
+.footer-col ul a:hover{color:var(--green-deep);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{color:var(--text-muted);font-size:0.82rem;}
+.footer-bottom a{color:var(--green-deep);text-decoration:none;font-weight:600;}
+@media(max-width:1024px){.features-grid,.tab-content.active{grid-template-columns:1fr;}.footer-top{grid-template-columns:1fr 1fr;}nav ul{display:none;}}
+@media(max-width:600px){.footer-top{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><div class="logo-mark">🌿</div><span class="logo-text">Agri<span>Nova</span> Labs</span></a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="solution.html">Solution</a></li>
+    <li><a href="features.html" class="active">Features</a></li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-tag">⚡ Platform Features</div>
+    <h1>Everything You Need<br/><em>In One Platform</em></h1>
+    <p>AgriNova Labs brings together AI disease detection, smart irrigation, yield forecasting, and investor-grade reporting — all in a single, unified platform built for African agriculture.</p>
+  </div>
+</div>
+
+<section>
+  <div class="section-tag">Core Features</div>
+  <h2 class="section-title">Built for Every Stakeholder</h2>
+  <p class="section-sub">Whether you're a smallholder farmer, large agribusiness, or AgriTech investor — our platform delivers the tools you need.</p>
+  <div class="features-grid">
+    <div class="feature-row"><div class="feat-icon">📈</div><div><h3>Investment-Grade Reporting</h3><p>Automated farm performance reports with verified yield data, risk assessments, and ROI projections for investors and lenders.</p></div></div>
+    <div class="feature-row"><div class="feat-icon">🤖</div><div><h3>AI Agronomist Assistant</h3><p>24/7 conversational AI that answers crop-specific questions, recommends interventions, and escalates to human experts when needed.</p></div></div>
+    <div class="feature-row"><div class="feat-icon">🗺️</div><div><h3>Farm Mapping & Zoning</h3><p>Precision GPS field mapping with automated zone detection for variable-rate input application and targeted management strategies.</p></div></div>
+    <div class="feature-row"><div class="feat-icon">⚡</div><div><h3>Instant Alert System</h3><p>SMS and push alerts for detected disease outbreaks, weather risks, or irrigation anomalies — reaching farmers within minutes of detection.</p></div></div>
+    <div class="feature-row"><div class="feat-icon">🔗</div><div><h3>Market & Supply Chain Integration</h3><p>Direct connections to verified buyers, logistics partners, and cold chain providers to close the gap between farm and market.</p></div></div>
+    <div class="feature-row"><div class="feat-icon">🌦️</div><div><h3>Hyperlocal Weather Forecasting</h3><p>Micro-climate modelling at the farm level — not just the nearest town — with 7-day outlooks and rainfall probability scoring.</p></div></div>
+    <div class="feature-row"><div class="feat-icon">📶</div><div><h3>Offline-First Mobile App</h3><p>Full functionality in low-connectivity rural environments. Data syncs automatically when the device reconnects to the internet.</p></div></div>
+    <div class="feature-row"><div class="feat-icon">🔒</div><div><h3>Enterprise Data Security</h3><p>End-to-end encryption, role-based access controls, and NDPC-compliant data handling keep your farm data secure and private.</p></div></div>
+    <div class="feature-row"><div class="feat-icon">🛰️</div><div><h3>Weekly Satellite Health Maps</h3><p>NDVI and multi-spectral crop health imagery delivered weekly — giving you a bird's-eye view of your entire operation at scale.</p></div></div>
+    <div class="feature-row"><div class="feat-icon">🔧</div><div><h3>Open API & Integrations</h3><p>RESTful API for seamless integration with ERP systems, supply chain platforms, banking software, and third-party analytics tools.</p></div></div>
+  </div>
+</section>
+
+<section class="audience">
+  <div class="section-tag">Who It's For</div>
+  <h2 class="section-title">Tailored for Your Role</h2>
+  <p class="section-sub">AgriNova features adapt to the specific needs of every user type on the platform.</p>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('farmers')">🌾 Farmers</button>
+    <button class="tab-btn" onclick="showTab('investors')">💼 Investors</button>
+    <button class="tab-btn" onclick="showTab('agribiz')">🏭 Agribusinesses</button>
+  </div>
+  <div class="tab-content active" id="tab-farmers">
+    <div class="audience-card"><div class="ic">📱</div><div><h4>Mobile-First Design</h4><p>Simple, intuitive app designed for farmers with limited tech experience. Available in Yoruba, Hausa, and Igbo.</p></div></div>
+    <div class="audience-card"><div class="ic">🔬</div><div><h4>Disease Scan via Photo</h4><p>Point your phone camera at a leaf and get a disease diagnosis and treatment recommendation in under 10 seconds.</p></div></div>
+    <div class="audience-card"><div class="ic">💧</div><div><h4>Irrigation Scheduling</h4><p>Get daily water management recommendations based on real-time soil moisture and tomorrow's weather forecast.</p></div></div>
+    <div class="audience-card"><div class="ic">🛒</div><div><h4>Market Price Alerts</h4><p>Know when commodity prices peak so you can time your sales for maximum profit — right from the app.</p></div></div>
+  </div>
+  <div class="tab-content" id="tab-investors">
+    <div class="audience-card"><div class="ic">📊</div><div><h4>Portfolio Dashboard</h4><p>Track yield performance, risk scores, and projected returns across your entire agricultural investment portfolio in real time.</p></div></div>
+    <div class="audience-card"><div class="ic">✅</div><div><h4>Verified Farm Data</h4><p>Independent satellite-verified yield data you can trust for due diligence, loan origination, and impact reporting.</p></div></div>
+    <div class="audience-card"><div class="ic">⚠️</div><div><h4>Early Risk Warnings</h4><p>AI flags potential crop failures, weather disruptions, or pest outbreaks on financed farms — weeks before they happen.</p></div></div>
+    <div class="audience-card"><div class="ic">📄</div><div><h4>Auto-Generated Reports</h4><p>Quarterly performance reports with verified data, ready for LP reporting, regulatory submissions, or board presentations.</p></div></div>
+  </div>
+  <div class="tab-content" id="tab-agribiz">
+    <div class="audience-card"><div class="ic">🗂️</div><div><h4>Multi-Farm Management</h4><p>Manage hundreds of contract farms from a single dashboard — with zone-level alerts and consolidated reporting.</p></div></div>
+    <div class="audience-card"><div class="ic">🔗</div><div><h4>Supply Chain Visibility</h4><p>Track produce from seed to delivery with full traceability — quality, quantity, and compliance at every step.</p></div></div>
+    <div class="audience-card"><div class="ic">📦</div><div><h4>Procurement Forecasting</h4><p>Plan procurement volumes, logistics, and processing capacity based on AI-projected harvest timelines and quantities.</p></div></div>
+    <div class="audience-card"><div class="ic">🤝</div><div><h4>Outgrower Program Tools</h4><p>Onboard and monitor thousands of outgrower farmers with digital contracts, input tracking, and yield verification.</p></div></div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <h2>Ready to See It Live?</h2>
+  <p>Book a personalised demo and we'll walk you through every feature tailored to your needs.</p>
+  <a href="contact.html" class="btn-white">Book a Demo</a>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><div class="logo-mark">🌿</div><span class="logo-text">Agri<span>Nova</span> Labs</span></a>
+      <p>AI-powered precision agriculture for a food-secure Africa.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/agrinovalabs" target="_blank">𝕏</a>
+        <a href="https://www.linkedin.com/company/112016958" target="_blank">in</a>
+        <a href="https://www.facebook.com/photo.php?fbid=122097677865278900&set=a.122097677895278900&type=3&mibextid=rS40aB7S9Ucbxw6v" target="_blank">fb</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="features.html">Features</a></li><li><a href="solution.html">Solution</a></li><li><a href="contact.html">Contact</a></li><li><a href="technology.html">Technology</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:hello@agrinovaai.com">hello@agrinovaai.com</a></li><li><a href="tel:+2348140117682">+234 814 011 7682</a></li><li><a>No 12 obukpa layout, ibagwa road, Enugu State</a></li><li><a>Privacy Policy</a></li></ul></div>
+    <div class="footer-col">
+      <h4>Social Media</h4>
+      <ul>
+        <li><a href="https://x.com/agrinovalabs" target="_blank"></a>Twitter</a></li>
+        <li><a href="https://www.linkedin.com/company/112016958" target="_blank"></a>LinkedIn</a></li>
+        <li><a href="https://www.facebook.com/photo.php?fbid=122097677865278900&set=a.122097677895278900&type=3&mibextid=rS40aB7S9Ucbxw6v" target="_blank"></a>Facebook</a></li>
+      </ul>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 AgriNova Labs. All rights reserved.</p>
+    </p><p>Reach out to us <a href="#" target="contact.html">via our contact page.</a></p>
+  </div>
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+const io=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.style.opacity='1';el.target.style.transform='translateY(0)';}});},{threshold:0.1});
+document.querySelectorAll('.feature-row,.audience-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity 0.45s ease,transform 0.45s ease';io.observe(el);});
+</script>
+</body>
+</html>
