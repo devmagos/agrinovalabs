@@ -176,7 +176,7 @@ footer{background:#d4f0d8;padding:60px 6% 30px;}
       <button class="form-submit" onclick="handleSubmit()">Send Message →</button>
       <p class="form-note">
         <!-- Powered by <strong><a href="https://zoho.com" target="_blank">Zoho Mail</a></strong> ·  -->
-        <a href="mailto:oselu@agrinovaai.site">hello@agrinovaai.com</a><br/>
+        <a href="mailto:oselu@agrinovaai.site">hello@agrinovalabs.site</a><br/>
         We respond within 24 hours on business days. Your data is kept private and never sold.
       </p>
       <div class="toast" id="toast">✅ Message sent! We'll get back to you within 24 hours. — The AgriNova Labs Team</div>
@@ -253,7 +253,7 @@ function handleSubmit() {
   const phone = document.getElementById('phone').value.trim();
   const subject = `AgriNova Inquiry${interest ? ': ' + interest : ''} — from ${fn} ${ln}`;
   const body = `Hello AgriNova Labs Team,\n\nName: ${fn} ${ln}\nEmail: ${em}\nPhone: ${phone || 'Not provided'}\nInterest: ${interest || 'Not specified'}\n\nMessage:\n${msg}\n\n---\nSent via agrinovaai.com contact form\nPowered by Zoho Mail`;
-  window.location.href = `mailto:oselu@agrinovaai.site?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = `mailto:oselu@agrinovalabs.site?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   document.getElementById('toast').classList.add('show');
   setTimeout(() => document.getElementById('toast').classList.remove('show'), 7000);
   ['firstName','lastName','email','phone','message'].forEach(id => document.getElementById(id).value = '');
